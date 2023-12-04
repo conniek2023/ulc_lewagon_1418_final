@@ -1,0 +1,2 @@
+class EventMembersController < ApplicationController
+end

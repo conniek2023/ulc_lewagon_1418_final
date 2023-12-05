@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
 
   def create
-
+  @event=Event.new
   end
 
   def destroy

@@ -1,13 +1,13 @@
 
-<div>
-  <div class="buttons-container">
+<div class="container-md">
+  <div class="buttons-container d-flex justify-content-between mt-5 mb-5">
 
     <!-- New Community Button -->
     <%= link_to "Create Community", new_community_path if policy(Community).new? %>
 
     <div class="filters">
       <!-- Filter Button 1 -->
-      <button class="filter-button">Type</button>
+      <button class="filter-button m">Type</button>
       <select id="filter1" class="filter-dropdown">
         <option value="type1">Blended</option>
         <option value="type2">Online</option>
@@ -26,17 +26,19 @@
       </select>
     </div>
   </div>
-</div>
 
-<h2><%= @communities.count %> communities are available:</h2>
 
-<div class="cards-container">
-  <% @communities.each do |community| %>
-    <div class="card">
-      <%# here should add the community topic icon %>
-      <%= community.name %>
-      <%= community.description %>
-      <%= community.user %>
-    </div>
-  <% end %>
+  <h2><%= @communities.count %> communities are available:</h2>
+
+  <div class="cards-container d-flex justify-content-center">
+    <% @communities.each do |community| %>
+      <div class="card mb-3">
+        <%# here should add the community topic icon %>
+        <p><%= community.name %></p>
+        <p><%= community.description %></p>
+        <%# here should add the community manager image %>
+        <p><%= community.user.first_name %></p>
+      </div>
+    <% end %>
+  </div>
 </div>

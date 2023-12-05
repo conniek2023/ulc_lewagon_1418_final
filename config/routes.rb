@@ -16,6 +16,8 @@ Rails.application.routes.draw do
  resources :events, only:[:edit, :update, :destory, :show]
 
   get "/me", to: "users#me", as: :me
+  get "edit", to: "users#edit", as: :edit
+  PATCH"update",to: "users#update", as: :update
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")

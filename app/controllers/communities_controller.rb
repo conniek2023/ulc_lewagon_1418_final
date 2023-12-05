@@ -4,8 +4,8 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    authorize @community
     @community = Community.find(params[:id])
+    authorize @community
   end
 
   def new
@@ -42,7 +42,7 @@ class CommunitiesController < ApplicationController
     @community=Community.find(params[:id])
     authorize @community
     @community.destroy
-    # redirect_to , status: :see_other
+    redirect_to me_path, status: :see_other
   end
 
   private

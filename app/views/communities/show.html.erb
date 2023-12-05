@@ -1,0 +1,5 @@
+<% if policy(@community).edit? %>
+  <%= link_to "Edit this community", edit_community_path(@community) %> |
+<% end %>
+<!-- [...] -->
+<%= button_to "Destroy this community", @community, method: :delete if policy(@community).destroy? %>

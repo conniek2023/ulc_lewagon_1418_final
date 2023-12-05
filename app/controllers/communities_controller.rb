@@ -10,10 +10,12 @@ class CommunitiesController < ApplicationController
 
   def new
     @community = Community.new
+    authorize @community
   end
 
   def create
     @community = current_user.communities.build(community_params)
+    authorize @community
     if @community.save
       redirect_to @community
     else
@@ -23,10 +25,12 @@ class CommunitiesController < ApplicationController
 
   def edit
     @community = Community.find(params[:id])
+    authorize @community
   end
 
   def update
     @community = Community.find(params[:id])
+    authorize @community
     if @community.update(community_params)
       redirect_to @community
     else
@@ -36,6 +40,7 @@ class CommunitiesController < ApplicationController
 
   def destroy
     @community=Community.find(params[:id])
+    authorize @community
     @community.destroy
     # redirect_to , status: :see_other
   end

@@ -1,7 +1,11 @@
 <div class="container">
   <h2>
-    Hey <%= current_user.first_name %>
-    Welcome back to <%= @community.name %>!
+    <% if current_user.present? %>
+      Hey <%= current_user.first_name %>
+      Welcome back to <%= @community.name %>!
+    <% else %>
+      Hi, join us!
+    <% end %>
   </h2>
 
   <div class="buttons-controller">

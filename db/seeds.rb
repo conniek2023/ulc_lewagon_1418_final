@@ -7,6 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+EventMember.destroy_all
+CommunityMember.destroy_all
+Event.destroy_all
+Community.destroy_all
+User.destroy_all
+
+
 require 'faker'
 
 user1 = User.create!(email: 'pikachu@pokemon.com', password: '12345678', first_name: 'Betty', last_name: 'White', location: 'China', nationality: 'Mexican', preferred_name: 'Betty-Boo' , gender: 'female');
@@ -25,30 +33,30 @@ community1 = Community.create!(name:'Happy Korean', description: 'Do you want to
 
 CommunityMember.create!(
   user: user1,
-  community: community
+  community: community1
 )
 
-community2 = Community.create!(name:"The Greek Gods' Rugby Association", description: 'Sigma male rugby team. Huzah!. Roll in the mud and blow off some steam. Be the man you were born to be.', topic: 'Rugby', user: user,
+community2 = Community.create!(name:"The Greek Gods' Rugby Association", description: 'Sigma male rugby team. Huzah!. Roll in the mud and blow off some steam. Be the man you were born to be.', topic: 'Rugby', user: user2,
 )
 
 CommunityMember.create!(
   user: user2,
-  community: community
+  community: community2
 )
 
-community3 = Community.create!(name:"Please Knit in Your Seat", description: 'There are trees that need sweaters and little mice to be made. Sit down, chat, and get sassy as we knit big ole lumpy sweaters together.', topic: 'Rugby', user: user,
+community3 = Community.create!(name:"Please Knit in Your Seat", description: 'There are trees that need sweaters and little mice to be made. Sit down, chat, and get sassy as we knit big ole lumpy sweaters together.', topic: 'Rugby', user: user3,
 )
 
 CommunityMember.create!(
   user: user3,
-  community: community
+  community: community3
 )
 
 e1 = Event.create!(title: 'Korean Chuseok', location: 'Korean Consulate',  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.",
-community: community, user:user1)
+community: community1, user:user1)
 
-e2 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community,
+e2 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2,
 user: user2)
 
-e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community,
+e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
 user: user3)

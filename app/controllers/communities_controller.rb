@@ -1,6 +1,6 @@
 class CommunitiesController < ApplicationController
   def index
-    @communities = policy_scope(Community)
+    @communities = policy_scope(Community).all
   end
 
   def show

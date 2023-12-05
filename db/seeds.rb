@@ -26,8 +26,6 @@ user3 = User.create!(email: 'michelle@whitehouse.gov', password: '12345678', fir
 user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_name: 'Andrew', last_name: 'Tate', location: 'China', nationality: 'British', preferred_name: 'Alpha Tate' , gender: 'male');
 
 
-
-
 community1 = Community.create!(name:'Happy Korean', description: 'Do you want to learn more about Korean culture or Korean language? Come join our Korean language group. We have many events such as celebrating Korean holidays or practicing language in one of our conversation meeting. All levels are welcome.', topic: 'Korean Language', user: user1,
 )
 

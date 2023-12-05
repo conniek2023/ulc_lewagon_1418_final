@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
- resources :events, only:[:edit, :update, :destory, :show]
+  resources :events, only:[:edit, :update, :destory, :show]
 
   get "/me", to: "users#me", as: :me
   get "up" => "rails/health#show", as: :rails_health_check

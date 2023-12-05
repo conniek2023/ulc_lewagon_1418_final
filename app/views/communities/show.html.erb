@@ -1,5 +1,14 @@
-<% if policy(@community).edit? %>
-  <%= link_to "Edit this community", edit_community_path(@community) %> |
-<% end %>
-<!-- [...] -->
-<%= button_to "Destroy this community", @community, method: :delete if policy(@community).destroy? %>
+<div class="container">
+  <h2>
+    Hey <%= current_user.first_name %>
+    Welcome back to <%= @community.name %>!
+  </h2>
+
+  <div class="buttons-controller">
+    <% if policy(@community).edit? %>
+      <%= link_to "Edit this community", edit_community_path(@community) %>
+    <% end %>
+    <!-- [...] -->
+    <%= button_to "Destroy this community", @community, method: :delete if policy(@community).destroy? %>
+  </div>
+</div>

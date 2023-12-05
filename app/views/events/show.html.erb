@@ -1,0 +1,23 @@
+
+<%# Below is the carousel %>
+  <div id="carouselExample" class="carousel slide mt-3 mb-4">
+    <ol class="carousel-inner">
+      <% @event.images.each.with_index do |img, index| %>
+        <li class="carousel-item <%= 'active' if index.zero? %>">
+          <%= cl_image_tag(img.key, height: 600, class:"object-fit-cover border rounded w-100") %></li>
+      <% end %>
+    </ol>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<%# Above is the carousel %>
+
+<div>
+
+</div>

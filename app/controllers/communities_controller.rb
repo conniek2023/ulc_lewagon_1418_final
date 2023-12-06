@@ -1,17 +1,22 @@
 class CommunitiesController < ApplicationController
   def index
-    @communities = policy_scope(Community).all
+    if params[:filter].nil?
+      @communities = policy_scope(Community).all
+    else
+      @communities = policy_scope(Community).where(topic: params[:filter])
+    end
   end
 
   def show
     @community = Community.find(params[:id])
     authorize @community
+    # @current_user = current_user
   end
 
-  def new
-    @community = Community.new
-    authorize @community
-  end
+  # def new
+  #   @community = Community.new
+  #   authorize @community
+  # end
 
   def create
     @community = current_user.communities.build(community_params)
@@ -23,10 +28,10 @@ class CommunitiesController < ApplicationController
     end
   end
 
-  def edit
-    @community = Community.find(params[:id])
-    authorize @community
-  end
+  # def edit
+  #   @community = Community.find(params[:id])
+  #   authorize @community
+  # end
 
   def update
     @community = Community.find(params[:id])
@@ -42,7 +47,7 @@ class CommunitiesController < ApplicationController
     @community=Community.find(params[:id])
     authorize @community
     @community.destroy
-    redirect_to me_path, status: :see_other
+    redirect_to communities_path, status: :see_other
   end
 
   private

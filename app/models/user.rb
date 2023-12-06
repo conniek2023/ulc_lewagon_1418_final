@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   # has_many :community_members,
-  has_many :communitiy_members
+  has_many :community_members
   has_many :communities
   has_many :joined_communities, through: :community_members, source: :community
   has_many :events
-  has_many :joined_events, through: :event_members, source: :event
   has_many :event_members
+  has_many :joined_events, through: :event_members, source: :event
 end

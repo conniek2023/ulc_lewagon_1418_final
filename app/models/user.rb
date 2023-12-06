@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :communities
   has_many :joined_communities, through: :community_members, source: :community
   has_many :events
-  has_many :joined_events, through: :event_members, source: :event
   has_many :event_members
+  has_many :joined_events, through: :event_members, source: :event
 end

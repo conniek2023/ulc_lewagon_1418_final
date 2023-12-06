@@ -30,22 +30,22 @@
       </div>
     </div>
 
-    <h2><%= @communities.count %> communities are available:</h2>
+    <div class="mb-3 mt-3 text-2xl"><%= @communities.count %> communities are available:</div>
   </div>
 
-  <div class="md:container md:mx-auto flex justify-center space-x-4 space-y-4 items-start">
+  <div class="md:container md:mx-auto flex justify-center space-x-4">
       <%# below is the card %>
       <% @communities.each do |community| %>
         <div>
           <a href="#" class="block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></h5>
-          <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
-          <figcaption class="flex items-center justify-center ">
-            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
-            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
-              <div>Bonnie Green</div>
-              <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
-            </div>
+            <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
+            <figcaption class="flex items-center justify-center mt-3">
+              <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
+              <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
+                <div>Bonnie Green</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
+              </div>
             </figcaption>
           </a>
         </div>

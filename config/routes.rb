@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get "/me", to: "users#me", as: :me
   get "edit", to: "users#edit", as: :edit
-  PATCH"update",to: "users#update", as: :update
+  patch "update",to: "users#update", as: :update
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")

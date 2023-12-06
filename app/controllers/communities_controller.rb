@@ -1,6 +1,10 @@
 class CommunitiesController < ApplicationController
   def index
-    @communities = policy_scope(Community).all
+    if params[:filter].nil?
+      @communities = policy_scope(Community).all
+    else
+      @communities = policy_scope(Community).where(topic: params[:filter])
+    end
   end
 
   def show

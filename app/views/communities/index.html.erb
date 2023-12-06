@@ -1,45 +1,56 @@
 
-<div class="container-md">
-  <div class="buttons-containers flex justify-between">
+<div class="md:container md:mx-auto">
 
-    <!-- New Community Button -->
-    <%= button_to "Create Community", new_community_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2", method: :get if policy(Community).new? %>
-    <%# <button type="button" class=" bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Blue</button> %>
+  <div class="buttons-title-container">
+    <div class="buttons-containers flex justify-between">
 
-    <%# <%= link_to "Create Community", new_community_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" if policy(Community).new? %>
+      <!-- New Community Button -->
+      <%= button_to "Create Community", new_community_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2", method: :get if policy(Community).new? %>
 
-    <div class="filters">
-      <!-- Filter Button -->
-      <button id="dropdownButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Topic<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-      </svg>
-      </button>
 
-      <!-- Dropdown menu 1 -->
-      <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-            <% Constants::TOPICS.each do |topic| %>
-              <li>
-                <a href="/communities?filter=<%= topic %>" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><%= topic %></a>
-              </li>
-            <% end %>
-          </ul>
+      <%# <%= link_to "Create Community", new_community_path, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" if policy(Community).new? %>
+
+      <div class="filters">
+        <!-- Filter Button -->
+        <button id="dropdownButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Topic<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+        </svg>
+        </button>
+
+        <!-- Dropdown menu 1 -->
+        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+              <% Constants::TOPICS.each do |topic| %>
+                <li>
+                  <a href="/communities?filter=<%= topic %>" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><%= topic %></a>
+                </li>
+              <% end %>
+            </ul>
+        </div>
       </div>
     </div>
+
+    <h2><%= @communities.count %> communities are available:</h2>
   </div>
 
-
-  <h2><%= @communities.count %> communities are available:</h2>
-
-  <div class="cards-container d-flex justify-content-center">
-    <% @communities.each do |community| %>
-      <div class="card mb-3">
-        <%# here should add the community topic icon %>
-        <p><%= community.name %></p>
-        <p><%= community.description %></p>
-        <%# here should add the community manager image %>
-        <p><%= community.user.first_name %></p>
-      </div>
-    <% end %>
+  <div class="md:container md:mx-auto flex justify-center space-x-4 space-y-4 items-start">
+      <%# below is the card %>
+      <% @communities.each do |community| %>
+        <div>
+          <a href="#" class="block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></h5>
+          <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
+          <figcaption class="flex items-center justify-center ">
+            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+              <div>Bonnie Green</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
+            </div>
+            </figcaption>
+          </a>
+        </div>
+      <% end %>
+      <%# above is the card %>
   </div>
+
 </div>

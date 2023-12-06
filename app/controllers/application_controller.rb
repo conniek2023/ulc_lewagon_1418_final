@@ -28,4 +28,9 @@ class ApplicationController < ActionController::Base
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
+
+  # def current_user
+  #   @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+  # end
+  # helper_method :current_user
 end

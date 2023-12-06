@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module UlcLewagon1418Final
   class Application < Rails::Application
+    config.autoload_paths += %W(#{config.root}/lib)
     config.generators do |generate|
       generate.assets false
       generate.helper false

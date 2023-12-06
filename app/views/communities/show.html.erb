@@ -1,6 +1,7 @@
 <div class="container">
   <h2>
-    <% if current_user.present? %>
+    <%= current_user.email %>
+    <% if current_user.present? && @community.joined_users.to_a.include?(current_user) %>
       Hey <%= current_user.first_name %>
       Welcome back to <%= @community.name %>!
       See our community description:
@@ -9,6 +10,54 @@
       Hi, join us!
     <% end %>
   </h2>
+
+<%= button_to "Join Now!", community_community_members_path(@community), method: :post, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+
+<%= button_to "Post Event", class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+
+<%= button_to "All Events", class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+
+
+<div id="carousel" class="row flex overflow-x-auto">
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/062.webp" class="card-img-top" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/063.webp" class="card-img-top" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/064.webp" class="card-img-top" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
   <div class="buttons-controller">
 

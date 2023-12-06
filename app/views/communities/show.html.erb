@@ -4,10 +4,10 @@
     <% if current_user.present? && @community.joined_users.to_a.include?(current_user) %>
       Hey <%= current_user.first_name %>
       Welcome back to <%= @community.name %>!
-      See our community description:
-      <%= @community.description %>
     <% else %>
       Hi, join us!
+       See our community description:
+      <%= @community.description %>
     <% end %>
   </h2>
 

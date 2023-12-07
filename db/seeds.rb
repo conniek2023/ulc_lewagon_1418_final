@@ -7,6 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Event.all.each do |event|
+  event.images.purge_later
+end
+User.all.each do |user|
+  user.photo.purge
+end
 
 EventMember.destroy_all
 CommunityMember.destroy_all
@@ -14,7 +20,7 @@ Event.destroy_all
 Community.destroy_all
 User.destroy_all
 
-
+require "open-uri"
 require 'faker'
 
 user1 = User.create!(email: 'pikachu@pokemon.com', password: '12345678', first_name: 'Betty', last_name: 'White', location: 'China', nationality: 'Mexican', preferred_name: 'Betty-Boo' , gender: 'female');
@@ -58,3 +64,12 @@ user: user2)
 
 e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
 user: user3)
+
+
+
+
+file1 = URI.open("https://images.unsplash.com/photo-1594373606301-5b66f999f62b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzIyfHxrb3JlYW58ZW58MHx8MHx8fDA%3D")
+file2 = URI.open()
+e1.images.attach(io: file1, filename: "c1e1i1.png", content_type: "image/png")
+e1.images.attach(io: file2, filename: "c1e1i2.png", content_type: "image/png")
+e1.save

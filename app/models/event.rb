@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_one_attached :photo
+  has_many_attached :images
   belongs_to :user
   belongs_to :community
   has_many :event_members

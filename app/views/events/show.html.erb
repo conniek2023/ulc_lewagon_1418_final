@@ -5,6 +5,7 @@
       <% @event.images.each.with_index do |img, index| %>
         <li class="carousel-item <%= 'active' if index.zero? %>">
           <%= cl_image_tag(img.key, height: 600, class:"object-fit-cover border rounded w-100") %></li>
+      width: 400, height: 300, crop: :fill) %>
       <% end %>
     </ol>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

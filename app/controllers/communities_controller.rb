@@ -1,4 +1,6 @@
 class CommunitiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  skip_after_action :verify_policy_scoped, only: :index
   def index
     if params[:filter].nil?
       @communities = policy_scope(Community).all
@@ -40,7 +42,7 @@ class CommunitiesController < ApplicationController
     if @community.update(community_params)
       redirect_to @community
     else
-      render :edit
+      render :update
     end
   end
 

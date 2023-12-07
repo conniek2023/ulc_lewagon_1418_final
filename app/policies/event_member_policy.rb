@@ -6,11 +6,11 @@ class EventMemberPolicy < ApplicationPolicy
     # end
   end
 
-  def create
+  def create?
     user.joined_communities.include?(record.event.community) && user==record.user
   end
 
-  def destroy
+  def destroy?
     record.user==user || record.event.user==user
   end
 end

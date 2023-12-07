@@ -9,6 +9,7 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
+    @events = @community.events # => [event1 , ...]
     authorize @community
     # @current_user = current_user
   end

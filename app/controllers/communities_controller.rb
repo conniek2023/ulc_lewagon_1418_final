@@ -1,4 +1,6 @@
 class CommunitiesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  skip_after_action :verify_policy_scoped, only: :index
   def index
     if params[:filter].nil?
       @communities = policy_scope(Community).all

@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = Community.find(params[:id])
-    if @community.update(community_params)
-      redirect_to @community
+    @user = User.find(params[:id])
+    if @user.update(params.require(:community).permit(:name, :description, :topic))
+      redirect_to me_path
     else
       render :edit
     end

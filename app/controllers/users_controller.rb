@@ -6,11 +6,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update(params.require(:community).permit(:name, :description, :topic))
+    if current_user.update(params.require(:user).permit(:first_name, :last_name, :location, :preferred_name, :nationality, :gender))
       redirect_to me_path
     else
-      render :edit
+      render :update
     end
   end
 

@@ -50,11 +50,8 @@ CommunityMember.create!(
   community: community3
 )
 
-e1 = Event.create!(title: 'Korean Chuseok', location: 'Korean Consulate',  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.",
-community: community1, user:user1)
+e1 = Event.create!(title: 'Korean Chuseok', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
 
-e2 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2,
-user: user2)
+e2 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River", type: "offline", start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2, user: user2)
 
-e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
-user: user3)
+e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe", type: "offline", start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3, user: user3)

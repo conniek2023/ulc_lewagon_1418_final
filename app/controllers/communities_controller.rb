@@ -41,7 +41,7 @@ class CommunitiesController < ApplicationController
     if @community.update(community_params)
       redirect_to @community
     else
-      render :edit
+      render :update
     end
   end
 

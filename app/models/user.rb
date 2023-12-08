@@ -11,5 +11,5 @@ class User < ApplicationRecord
   has_many :events
   has_many :event_members
   has_many :joined_events, through: :event_members, source: :event
-  validates :preferred_name, :first_name, :last_name, :location,presence: true
+  # validates :preferred_name, :first_name, :last_name, :location,presence: true
 end

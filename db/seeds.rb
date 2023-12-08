@@ -31,24 +31,53 @@ user3 = User.create!(email: 'michelle@whitehouse.gov', password: '12345678', fir
 
 user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_name: 'Andrew', last_name: 'Tate', location: 'China', nationality: 'British', preferred_name: 'Alpha Tate' , gender: 'male');
 
+users = []
+26.times do |i|
+  p "generating user number #{i}"
+  user= User.create!(email: "#{Faker::Movies::HarryPotter.character.gsub(' ', '_')}#{Faker::Number.decimal_part}#{i}@gmail.com", password: '12345678', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, location: Faker::Address.country, nationality: 'Faker::Address.country', preferred_name: 'Faker::HarryPotter.character' , gender: Faker::Gender.binary_type);
+  users << user
+end
 
-community1 = Community.create!(name:'Happy Korean', description: 'Do you want to learn more about Korean culture or Korean language? Come join our Korean language group. We have many events such as celebrating Korean holidays or practicing language in one of our conversation meeting. All levels are welcome.', topic: 'Korean Language', user: user1,
+users # => [<user1>, <user2>]
+
+users[0]
+
+
+
+community1 = Community.create!(name:'Happy Korean', description: 'Do you want to learn more about Korean culture or Korean language? Come join our Korean language group. We have many events such as celebrating Korean holidays or practicing language in one of our conversation meeting. All levels are welcome.', topic: Constants::TOPICS[0], user: user1,
 )
 
-CommunityMember.create!(
-  user: user1,
-  community: community1
-)
+users.each do |user| 
+    CommunityMember.create!(
+      user: user,
+      community: community1
+    )
+  end
+
+# CommunityMember.create!(
+#   user: users[10],
+#   community: community1
+# )
+
+# CommunityMember.create!(
+#   user: users[20],
+#   community: community1
+# )
+
+# CommunityMember.create!(
+#   user: users[15],
+#   community: community1
+# )
 
 community2 = Community.create!(name:"The Greek Gods' Rugby Association", description: 'Sigma male rugby team. Huzah!. Roll in the mud and blow off some steam. Be the man you were born to be.', topic: 'Rugby', user: user2,
 )
 
 CommunityMember.create!(
-  user: user2,
+  user: users[2],
   community: community2
 )
 
-community3 = Community.create!(name:"Please Knit in Your Seat", description: 'There are trees that need sweaters and little mice to be made. Sit down, chat, and get sassy as we knit big ole lumpy sweaters together.', topic: 'Rugby', user: user3,
+community3 = Community.create!(name:"Coffee & Do Knits", description: 'There are trees that need sweaters and little mice to be made. Sit down, chat, and get sassy as we knit big ole lumpy sweaters together.', topic: 'Rugby', user: user3,
 )
 
 CommunityMember.create!(
@@ -56,19 +85,90 @@ CommunityMember.create!(
   community: community3
 )
 
-e1 = Event.create!(title: 'Korean Chuseok', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+community4 = Community.create!(name:"Bake It Till You Make It", description: "Let's get fat and sassy cooking some declicious meals.", topic: 'Cooking', user: user4,
+)
 
-e2 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River", type: "offline", start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2, user: user2)
+community5 = Community.create!(name:"Daddies of the Lord", description: "Gather with other daddies of the Lord for bible studies and other events.", topic: 'Religious', user: users[9],
+)
 
-e3 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  type: "offline",start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
+CommunityMember.create!(
+  user: users[11],
+  community: community3
+)
+
+
+
+#Korean Community
+e11 = Event.create!(title: 'Korean Chuseok', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e12 = Event.create!(title: 'Korean New Years', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e13 = Event.create!(title: 'Korean Conversation Group', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e14 = Event.create!(title: 'Korean Book Club', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e15 = Event.create!(title: 'Korean Cinema', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e16 = Event.create!(title: 'Korean Cooking Class', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+e17 = Event.create!(title: 'Korean Kpop Dance Practice', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
+
+#Rugby Community
+e21 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River", type: "offline", start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2, user: user2)
+
+
+
+#Knitting Community
+e31 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  type: "offline",start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
 user: user3)
 
 
 
 
+#Korean CommunityEvent images
+
 file1 = URI.open("https://images.unsplash.com/photo-1594373606301-5b66f999f62b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzIyfHxrb3JlYW58ZW58MHx8MHx8fDA%3D")
-file2 = URI.open()
-e1.images.attach(io: file1, filename: "c1e1i1.png", content_type: "image/png")
-e1.images.attach(io: file2, filename: "c1e1i2.png", content_type: "image/png")
-e1.save
+file2 = URI.open("https://images.unsplash.com/photo-1605972023865-471b1488b6a9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGtvcmVhbnxlbnwwfHwwfHx8MA%3D%3D")
+file3 = URI.open("https://images.unsplash.com/photo-1578648491523-2f2a3a8ca63a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fGtvcmVhfGVufDB8fDB8fHww")
+e11.images.attach(io: file1, filename: "c1e1i1.png", content_type: "image/png")
+e11.images.attach(io: file2, filename: "c1e1i2.png", content_type: "image/png")
+e11.images.attach(io: file3, filename: "c1e1i3.png", content_type: "image/png")
+e11.save
+
+
+file1 = URI.open("https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a29yZWF8ZW58MHx8MHx8fDA%3D")
+file2 = URI.open("https://images.unsplash.com/photo-1531931477284-7e16215c9540?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGtvcmVhfGVufDB8fDB8fHww")
+file3 = URI.open("https://images.unsplash.com/photo-1485186337913-a42c84d7ffcc?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGtvcmVhfGVufDB8fDB8fHww")
+e12.images.attach(io: file1, filename: "c1e2i1.png", content_type: "image/png")
+e12.images.attach(io: file2, filename: "c1e2i2.png", content_type: "image/png")
+e12.images.attach(io: file3, filename: "c1e2i3.png", content_type: "image/png")
+e12.save
+
+#Other event images
+file1 = URI.open("https://images.unsplash.com/photo-1616500156885-e51d834cab8e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fHJ1Z2J5fGVufDB8fDB8fHww")
+file2 = URI.open("https://images.unsplash.com/photo-1516689807549-04b4c3b4ee35?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzZ8fHJ1Z2J5fGVufDB8fDB8fHww")
+file3 = URI.open("https://images.unsplash.com/photo-1599832899648-9666985c1bd2?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHJ1Z2J5fGVufDB8fDB8fHww")
+e21.images.attach(io: file1, filename: "c2e1i1.png", content_type: "image/png")
+e21.images.attach(io: file2, filename: "c2e1i2.png", content_type: "image/png")
+e21.images.attach(io: file3, filename: "c2e1i3.png", content_type: "image/png")
+e21.save
+
+
+file1 = URI.open("https://images.unsplash.com/photo-1584992236310-6edddc08acff?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a25pdHRpbmd8ZW58MHx8MHx8fDA%3D")
+file2 = URI.open("https://images.unsplash.com/photo-1632649027900-389e810204e6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a25pdHRpbmd8ZW58MHx8MHx8fDA%3D")
+file3 = URI.open("https://images.unsplash.com/photo-1541944743827-e04aa6427c33?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8a25pdHRpbmd8ZW58MHx8MHx8fDA%3D")
+e31.images.attach(io: file1, filename: "c3e1i1.png", content_type: "image/png")
+e31.images.attach(io: file2, filename: "c3e1i2.png", content_type: "image/png")
+e31.images.attach(io: file3, filename: "c3e1i3.png", content_type: "image/png")
+e31.save
+
+
+
+#user images
+
+file1 = URI.open("https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww")
+user1.photo.attach(io: file1, filename: "user1.png", content_type: "image/png")
+user1.save
+
+file1 = URI.open("https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVyc29ufGVufDB8fDB8fHww")
+user2.photo.attach(io: file1, filename: "user2.png", content_type: "image/png")
+user2.save
+
+file1 = URI.open("https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+user3.photo.attach(io: file1, filename: "user3.png", content_type: "image/png")
+user3.save
 

@@ -88,8 +88,9 @@
                                 <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                                 <select id="gender" name="user[gender]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Select category</option>
-                                    <option value="Male"<%= 'selected' if current_user.gender == 'Male' %>>Male</option>
-                                    <option value="Female"<%= 'selected' if current_user.gender == 'Female' %>>Female</option>
+                                    <option value="🚹"<%= 'selected' if current_user.gender == '🚹' %>>🚹</option>
+                                    <option value="🚺"<%= 'selected' if current_user.gender == '🚺' %>>🚺</option>
+                                    <option value="⚧️"<%= 'selected' if current_user.gender == '⚧️' %>>⚧️</option>
                                 </select>
                             </div>
                         </div>
@@ -152,6 +153,52 @@
         </div>
     </div>
     <div id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+      <div class="md:container md:mx-auto flex justify-center space-x-4">
+          <div class="mb-3 mt-3 text-2xl"><%= current_user.communities.count %> communities created by you :</div>
+              <%# below is the card %>
+              <%current_user.communities.each do |community| %>
+                <div>
+                  <%= link_to community_path(community) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
+                    <figcaption class="flex items-center justify-center mt-3">
+                      <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
+                      <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
+                        <div>Bonnie Green</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
+                      </div>
+                    </figcaption>
+                  <% end %>
+                </div>
+              <% end %>
+              <%# above is the card %>
+        </div>
 
+
+        <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
+          <div class="mb-3 mt-3 text-2xl"><%= current_user.events.count %> events created by you :</div>
+          <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
+            <% current_user.events.order(start_at: :desc).each do |event|%>
+              <time class="text-lg font-semibold text-gray-900 dark:text-white"><%= event.start_at %></time>
+                    <li>
+                      <%= link_to event_path(event) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= event.title %></p>
+                        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= event.type %></p>
+                        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= event.location %></p>
+                        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= event.start_at %></p>
+                        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= event.end_at %></p>
+                        <p class="font-normal text-gray-700 dark:text-gray-400"><%= event.introduction %></p>
+                        <figcaption class="flex items-center justify-center mt-3">
+                          <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
+                          <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
+                            <div>Bonnie Green</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
+                          </div>
+                        </figcaption>
+                      <% end %>
+                    </li>
+            <% end %>
+          </ol>
+        </div>
     </div>
 </div>

@@ -1,14 +1,16 @@
 class EventsController < ApplicationController
 
   def new
-    authorize @event
+
     @event=Event.new
-    
+    authorize @event
+
   end
 
   def create
-    authorize @event
+
     @event = current_user.events.build(event_params)
+    authorize @event
     if @event.save
       redirect_to @event
     else
@@ -17,33 +19,36 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    authorize @event
+
     @event=Event.find(params[:id])
+    authorize @event
     @event.destroy
     redirect_to me_path, status: :see_other
   end
 
   def edit
-    authorize @event
+
     @event = Event.find(params[:id])
-    
-  
+    authorize @event
+
+
   end
 
   def update
-    authorize @event
+
     @event = Event.find(params[:id])
+    authorize @event
     if @event.update(event_params)
       redirect_to @event
     else
       render :edit
     end
 
-  
+
   end
 
   def show
-    
+
     @event = Event.find(params[:id])
     authorize @event
   end

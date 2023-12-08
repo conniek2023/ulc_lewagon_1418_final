@@ -9,11 +9,11 @@ Rails.application.routes.draw do
   resources :communities do #community manager
     resources :community_members, only: [:create] #community_member
     resources :events, only: [:new, :create] do#event_manager
-      resources :event_members, only: [:create, :destory] #event_member
+      resources :event_members, only: [:create, :destroy] #event_member
     end
   end
 
-  resources :events, only:[:edit, :update, :destory, :show]
+  resources :events, only:[:edit, :update, :destroy, :show]
 
   get "/me", to: "users#me", as: :me
   patch "update",to: "users#update", as: :update

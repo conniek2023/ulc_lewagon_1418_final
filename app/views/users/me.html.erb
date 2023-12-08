@@ -77,19 +77,19 @@
                                 <label for="nationality" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nationality</label>
                                 <select id="nationality" name="user[nationality]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Select category</option>
-                                  <option value="TV" <%= 'selected' if current_user.nationality == 'TV' %>>America🇺🇸</option>
-                                  <option value="PC" <%= 'selected' if current_user.nationality == 'PC' %>>China🇨🇳</option>
-                                  <option value="GA" <%= 'selected' if current_user.nationality == 'GA' %>>Australia🇦🇺</option>
-                                  <option value="PZ" <%= 'selected' if current_user.nationality == 'PZ' %>>Indonesia🇮🇩</option>
-                                  <option value="PL" <%= 'selected' if current_user.nationality == 'PL' %>>France🇫🇷</option>
+                                  <option value="America🇺🇸" <%= 'selected' if current_user.nationality == 'America🇺🇸' %>>America🇺🇸</option>
+                                  <option value="China🇨🇳" <%= 'selected' if current_user.nationality == 'China🇨🇳' %>>China🇨🇳</option>
+                                  <option value="Australia🇦🇺" <%= 'selected' if current_user.nationality == 'Australia🇦🇺' %>>Australia🇦🇺</option>
+                                  <option value="Indonesia🇮🇩" <%= 'selected' if current_user.nationality == 'Indonesia🇮🇩' %>>Indonesia🇮🇩</option>
+                                  <option value="France🇫🇷" <%= 'selected' if current_user.nationality == 'France🇫🇷' %>>France🇫🇷</option>
                                 </select>
                             </div>
                              <div class="col-span-2 sm:col-span-1">
                                 <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                                 <select id="gender" name="user[gender]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Select category</option>
-                                    <option value="TV"<%= 'selected' if current_user.gender == 'TV' %>>Male</option>
-                                    <option value="PC"<%= 'selected' if current_user.gender == 'PC' %>>Female</option>
+                                    <option value="Male"<%= 'selected' if current_user.gender == 'Male' %>>Male</option>
+                                    <option value="Female"<%= 'selected' if current_user.gender == 'Female' %>>Female</option>
                                 </select>
                             </div>
                         </div>

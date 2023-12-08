@@ -1,8 +1,3 @@
-
-
-
-
-
 <div id="sticky-banner" tabindex="-1" class="fixed top-0 start-0 z-50 flex justify-between w-full p-4 border-b border-gray-200 bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
     <div class="flex items-center mx-auto">
         <p class="flex items-center text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -29,52 +24,21 @@
 
 
 <div class="container">
-  <h2>
-    <%= current_user.email %>
-    <% if current_user.present? && @community.joined_users.to_a.include?(current_user) %>
-      Hey <%= current_user.first_name %>
-      Welcome back to <%= @community.name %>!
-    <% else %>
-      Hi, join us!
-       See our community description:
-      <%= @community.description %>
-    <% end %>
-  </h2>
 
-<%= button_to "Join Now!", community_community_members_path(@community), method: :post, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
+    <h2>
+        <%= current_user.email %>
+        <% if current_user.present? && @community.joined_users.to_a.include?(current_user) %>
+        Hey <%= current_user.first_name %>
+        Welcome back to <%= @community.name %>!
+        <% else %>
+        Hi, join us!
+        See our community description:
+        <%= @community.description %>
+        <% end %>
+    </h2>
+    <%= button_to "Join Now!", community_community_members_path(@community), method: :post, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
 
-<%= button_to "Post Event", class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
-
-<%= button_to "All Events", class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
-
-
-
-
-<!--overflow scroll box div-->
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <% @events.each do |event| %>
-    <% link_to event_path do%>
-              <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <%= cl_image_tag event.images.first.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if event.images.attached? %>
-          <div class="p-5">
-              <a href="#">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%=event.title%></h5>
-              </a>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
-              <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Read more
-                  <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                  </svg>
-              </a>
-          </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
-<!--overflow scroll box div end-->
-
-<!-- New Event Button -->
+   <!-- New Event Button -->
     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       Create Event
     </button>
@@ -129,10 +93,35 @@
           </div>
       </div>
 
+    <%= button_to "All Events", class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
 
-
-
-
+    <!--overflow scroll box div-->
+    <div class="relative flex overflow-x-auto shadow-md sm:rounded-lg">
+        <%# <div class= "flex"> %>
+            <% @events.order(created_at: :desc).each do |event| %>
+                <div  class="" >
+                    <%= link_to event_path do %>
+                        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                            <%= cl_image_tag event.images.first.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if event.images.attached? %> 
+                            <div class="p-5">
+                                <a href="#">
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%=event.title%></h5>
+                                </a>
+                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%=event.introduction%></p>
+                                <!--a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Read more
+                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                    </svg>
+                                </a>-->
+                            </div>
+                        </div>
+                    <% end %>  
+                </div>
+            <% end %>
+        <%# </div> %>
+    </div>
+    <!--overflow scroll box div end-->
 
 
   <div class="buttons-controller">

@@ -1,10 +1,10 @@
 <div class="container-md">
-
-  <div class="buttons-containers flex justify-between">
+  <% if  current_user.present? %>
+    <div class="buttons-containers flex justify-between">
     <!-- New Community Button -->
-    <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-      Create Community
-    </button>
+      <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        Create Community
+      </button>
       <!-- Main modal -->
       <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
           <div class="relative p-4 w-full max-w-md max-h-full">
@@ -78,6 +78,37 @@
         </div>
     </div>
   </div>
+  <% else %>
+    <div class="buttons-containers flex justify-between">
+        <div>
+        </div>
+        <div class="filters">
+            <!-- Filter Button -->
+            <button id="dropdownButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Topic<svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+            </svg>
+            </button>
+
+            <!-- Dropdown menu 1 -->
+            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                  <li>
+                    <div class="border-b border-inherit">
+                      <a href="/communities" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">All</a>
+                    </div>
+                  </li>
+                  <% Constants::TOPICS.each do |topic| %>
+                    <li>
+                      <a href="/communities?filter=<%= topic %>" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><%= topic %></a>
+                    </li>
+                  <% end %>
+                </ul>
+            </div>
+        </div>
+      </div>
+  <% end %>
+
+
 
   <div class="mb-3 mt-3 text-2xl"><%= @communities.count %> communities are available:</div>
 
@@ -89,13 +120,6 @@
           <%= link_to community_path(community) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
             <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
             <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
-            <figcaption class="flex items-center justify-center mt-3">
-              <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
-              <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
-                <div>Bonnie Green</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
-              </div>
-            </figcaption>
           <% end %>
         </div>
       <% end %>

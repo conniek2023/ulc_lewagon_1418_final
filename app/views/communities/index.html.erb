@@ -113,13 +113,14 @@
   <div class="mb-3 mt-3 text-2xl"><%= @communities.count %> communities are available:</div>
 
 
-  <div class="md:container md:mx-auto flex justify-center space-x-4">
+  <div class="grid grid-cols-3 gap-3">
       <%# below is the card %>
       <% @communities.each do |community| %>
         <div>
           <%= link_to community_path(community) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
-            <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
-            <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
+             <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
+            <p class="mb-1 mt-1 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+            <p class="font-normal text-gray-700 dark:text-gray-400"><%= truncate(community.description, length: 100)%></p>
           <% end %>
         </div>
       <% end %>

@@ -1,2 +1,104 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div>
+    <div id="animation-carousel" class="relative w-full z-0 m-25" data-carousel="static">
+        <!-- Carousel wrapper -->
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+            <!-- Item 1 -->
+            <div class="hidden duration-200 ease-linear" data-carousel-item>
+                <%= image_tag "landingcarousel1_allhands.jpg", class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt: "hands in"%>
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-200 ease-linear" data-carousel-item>
+                <%= image_tag "landingcarousel2_menmeeting.jpg", class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt: "men meeting with notebooks at large table"%>
+            </div>
+            <!-- Item 3 -->
+            <div class="hidden duration-200 ease-linear" data-carousel-item="active">
+                <%= image_tag "landingcarousel3_wreathparty.jpg", class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt: "women in an open space making wreaths"%>
+            <!-- Item 4 -->
+            <div class="hidden duration-200 ease-linear" data-carousel-item>
+                <%= image_tag "carousel5_scubateam.jpg", class: "absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2", alt: "friends sitting next to each other with their backs to the camera looking at a bay area"%>
+            </div>
+        </div>
+        <!-- Slider controls -->
+        <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                </svg>
+                <span class="sr-only">Previous</span>
+            </span>
+        </button>
+        <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                </svg>
+                <span class="sr-only">Next</span>
+            </span>
+        </button>
+    </div>
+</div>
+
+
+
+<h1 class="text-5xl m-10"><span class="font-bold">Civitas </span> Learning Communities - where we can learn and grow together!</h1>
+
+<!--<div class="flex justify-center items-center">
+    <div class="flex justify-center items-center basis-1/2 m-10">
+        <h3 class="text-xl"> Civitas is a dynamic and user-friendly platform that takes social networking to the next level. It's designed to help individuals find and join communities that share their interests, and participate in events organized by these communities. With a focus on fostering real-world connections, Civitas allows users to discover local groups and events, making it easier than ever to meet like-minded people, participate in activities they love, and explore new interests.</h3>
+    </div>
+</div>
+
+<div class="flex flex-row justify-center items-center">
+    <div class="flex-1">
+        <h2 class="text-2xl">How it all started.</h2>
+    </div>
+        <div class="flex-2 justify-center items-center basis-1/2 m-10">
+            <h3 class="text-xl"> It all started around a campfire while camping in the Adirondacks…our trio felt so lucky to have each other’s friendship but many of the people in our lives were struggling to make connections and enjoy other’s company. Then and there we set out to help the people around us find the socialization we all need as humans. We hope you also find your community!</h3>
+        </div>
+</div>-->
+
+<!--text info area-->
+<div class="flex flex-col">
+    <!--How it works-->
+    <div class="m-20">
+        <div class="flex items-center justify-center">
+            <h2 class="text-2xl">How it works</h2>
+        </div>
+        <div class="flex justify-center items-center">
+            <h3 class="text-xl justify-center items-center basis-1/2 m-10"> Take a look around and find <strong>your</strong> people! Whether you're interested in attending Star Trek watch parties on a Tuesday evening or you'd like to join a pick-up soccer game Saturday morning, you can find the people who will let you be you <strong>together</strong> with you. </h3>
+        </div>
+    </div>
+    <!--What we do-->
+    <div class="m-20">
+        <div class="flex items-center justify-center">
+            <h2 class="text-2xl">What do we do</h2>
+        </div>
+        <div class="flex justify-center items-center">
+            <h3 class="text-xl justify-center items-center basis-1/2 m-10"> Civitas is a dynamic and user-friendly platform that takes social networking to the next level. It's designed to help individuals find and join communities that share their interests, and participate in events organized by these communities. With a focus on fostering real-world connections, Civitas allows users to discover local groups and events, making it easier than ever to meet like-minded people, participate in activities they love, and explore new interests.</h3>
+        </div>
+    </div>
+    <!--How it all started -->
+    <div class="m-20">
+        <div class="flex items-center justify-center">
+            <h2 class="text-2xl">How it all started.</h2>
+        </div>
+        <div class="flex justify-center items-center">
+            <h3 class="text-xl justify-center items-center basis-1/2 m-10"> It all started around a campfire while camping in the Adirondacks…our trio felt so lucky to have each other’s friendship but many of the people in our lives were struggling to make connections and enjoy others companionship. Then and there we set out to help the people around us find the socialization we all need as humans. We hope you also find your community!</h3>
+        </div>
+    </div>
+    <!--<div class="flex flex-col justify-center items-center">
+        <div>
+            <div>
+                <h2 class="text-2xl justify-center items-center basis-1/2 m-10">How it all started.</h2>
+            </div>
+            <div>
+                <h3 class="justify-center items-center m-10 text-xl basis-1/2"> It all started around a campfire while camping in the Adirondacks…our trio felt so lucky to have each other’s friendship but many of the people in our lives were struggling to make connections and enjoy other’s company. Then and there we set out to help the people around us find the socialization we all need as humans. We hope you also find your community!</h3>
+            </div>
+        </div>
+
+    </div>-->
+    <!--text box 3-->
+    <div>
+    </div>
+</div>

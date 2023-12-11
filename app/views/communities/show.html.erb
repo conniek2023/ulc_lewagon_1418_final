@@ -79,7 +79,8 @@
 
 
   <!--overflow scroll box div-->
-    <div class="relative flex overflow-x-auto shadow-md sm:rounded-lg">
+   <div class="grid grid-flow-col overflow-x-scroll auto-cols-[34%]">
+
 
         <%# <div class= "flex"> %>
             <% @events.order(created_at: :desc).each do |event| %>

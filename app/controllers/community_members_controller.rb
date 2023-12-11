@@ -5,10 +5,10 @@ class CommunityMembersController < ApplicationController
     @community_member = CommunityMember.new(community_id: params[:community_id], user_id: current_user.id)
     authorize @community_member
     if @community_member.save
-      flash[:notice] = "You have joined a community successfully."
+      flash[:alert] = "You have joined a community successfully."
       redirect_to @community_member.community
     else
-      flash[:notice] = "Failed"
+      flash[:alert] = "Failed"
       redirect_to community_path(@community_member.community)
     end
   end

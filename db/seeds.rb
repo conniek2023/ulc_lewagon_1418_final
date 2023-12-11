@@ -88,7 +88,7 @@ CommunityMember.create!(
 community4 = Community.create!(name:"Bake It Till You Make It", description: "Let's get fat and sassy cooking some declicious meals.", topic: 'Cooking', user: user4,
 )
 
-community5 = Community.create!(name:"Daddies of the Lord", description: "Gather with other daddies of the Lord for bible studies and other events.", topic: 'Religious', user: users[9],
+community5 = Community.create!(name:"Holy Fathers", description: "Gather with other daddies of the Lord for bible studies and other events.", topic: 'Religious', user: users[9],
 )
 
 CommunityMember.create!(

@@ -6,6 +6,6 @@ class CommunityMemberPolicy < ApplicationPolicy
     # end
   end
   def create?
-    record.user == user
+    record.user == user && record.community.user != user
   end
 end

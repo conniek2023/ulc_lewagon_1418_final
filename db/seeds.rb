@@ -23,13 +23,13 @@ User.destroy_all
 require "open-uri"
 require 'faker'
 
-user1 = User.create!(email: 'pikachu@pokemon.com', password: '12345678', first_name: 'Betty', last_name: 'White', location: 'China', nationality: 'Mexican', preferred_name: 'Betty-Boo' , gender: 'female');
+user1 = User.create!(email: 'pikachu@pokemon.com', password: '12345678', first_name: 'Lilancia', last_name: 'White', location: 'China', nationality: 'Mexican', preferred_name: 'Lila' , gender: 'female');
 
 user2 = User.create!(email: 'hearthrobbob@gmail.com', password: '12345678', first_name: 'Ricky', last_name: 'Bobby', location: 'China', nationality: 'Korean', preferred_name: 'Rick' , gender: 'male');
 
 user3 = User.create!(email: 'michelle@whitehouse.gov', password: '12345678', first_name: 'Michelle', last_name: 'Obama', location: 'China', nationality: 'USA', preferred_name: 'Chelly' , gender: 'female');
 
-user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_name: 'Andrew', last_name: 'Tate', location: 'China', nationality: 'British', preferred_name: 'Alpha Tate' , gender: 'male');
+user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_name: 'Andrew', last_name: 'Tate', location: 'China', nationality: 'British', preferred_name: 'Tater' , gender: 'male');
 
 users = []
 26.times do |i|

@@ -1,14 +1,13 @@
 
-<div class="container">
 
-
-    <div class="h-[120px] flex justify-between">
-    <div>
+  <div class="h-[120px] flex justify-between">
+    <div class="flex flex-col justify-center">
       <% if current_user.present? && @community.joined_users.to_a.include?(current_user)||current_user == @community.user%>
-      <h2>Hey ! <%= current_user.preferred_name %></h2>
-      <h2>Welcome back to <%= @community.name %> !</h2>
+       <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Hey ! <%= current_user.preferred_name %></h1>
+       <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome back to <%= @community.name %> !</h1>
+       <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><%= truncate(@community.description, length: 100) %></p>
       <% else %>
-      <h2>Hi, <%= current_user.preferred_name %> join us!</h2>
+      <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Hi, <%= current_user.preferred_name %> join us!</h1>
       <% end %>
     </div>
 
@@ -72,7 +71,7 @@
     <% elsif current_user.present? && current_user == @community.user %>
       <div>
         <!-- New Event Button -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
           Post an Event
         </button>
         <!-- Main modal -->
@@ -127,7 +126,7 @@
           </div>
           <div class="buttons-controller">
             <!-- Edit Community -->
-            <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+            <button data-modal-target="edit-modal" data-modal-toggle="edit-modal" class="mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
             Edit this community
             </button>
             <!-- Main modal -->
@@ -181,7 +180,7 @@
                 </div>
             </div>
             <!--Delete Community -->
-            <%= button_to "Destroy this community", @community, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{@community.name}'?"},class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"%>
+            <%= button_to "Destroy this community", @community, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{@community.name}'?"},class: "mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"%>
           </div>
       </div>
     <% else %>
@@ -192,7 +191,9 @@
 
   </div>
 
-  <div class="mb-3 mt-3 text-2xl"><%= @events.count %> events are available:</div>
+
+
+<div class="mb-3 mt-3 text-2xl"><%= @events.count %> events are available:</div>
 
 
   <!--overflow scroll box div-->
@@ -223,11 +224,6 @@
     </div>
    <!--overflow scroll box div end-->
 
-  <div class="mb-3 text-2xl text-center mt-8">About<p><%= @community.name %></p></div>
-
-  <a href="#" class="block max-w-2xl p-6 bg-white mx-auto">
-  <p><%= @community.description %></p>
-  </a>
 
   <div class="mb-3 text-2xl text-center mt-8">Our members</div>
 
@@ -237,8 +233,7 @@
     <% end %>
   </div>
 
-
-  <div class="mb-3 text-2xl text-center mt-8">Community initiator</div>
+  <div class="mb-3 text-2xl text-center mt-8">Community Administrator</div>
 
   <div class="w-full max-w-sm bg-white mx-auto">
       <div class="flex flex-col items-center pb-10">

@@ -7,7 +7,7 @@ class EventMemberPolicy < ApplicationPolicy
   end
 
   def create?
-    user.joined_communities.include?(record.event.community) && user==record.user
+    user.joined_communities.include?(record.event.community) && user==record.user && record.event.user != user
   end
 
   def destroy?

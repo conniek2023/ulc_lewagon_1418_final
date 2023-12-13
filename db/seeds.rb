@@ -10,6 +10,11 @@
 Event.all.each do |event|
   event.images.purge_later
 end
+
+Community.all.each do |community|
+  community.photo.purge
+end
+
 User.all.each do |user|
   user.photo.purge
 end
@@ -34,7 +39,7 @@ user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_nam
 users = []
 26.times do |i|
   p "generating user number #{i}"
-  user= User.create!(email: "#{Faker::Movies::HarryPotter.character.gsub(' ', '_')}#{Faker::Number.decimal_part}#{i}@gmail.com", password: '12345678', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, location: Faker::Address.country, nationality: 'Faker::Address.country', preferred_name: 'Faker::HarryPotter.character' , gender: Faker::Gender.binary_type);
+  user= User.create!(email: "#{Faker::Movies::HarryPotter.character.gsub(' ', '_')}#{Faker::Number.decimal_part}#{i}@gmail.com", password: '12345678', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, location: Faker::Address.country, nationality: Faker::Address.country, preferred_name: Faker::Movies::HarryPotter.character, gender: Faker::Gender.binary_type);
   users << user
 end
 
@@ -107,6 +112,13 @@ e15 = Event.create!(title: 'Korean Cinema', location: 'Korean Consulate', type: 
 e16 = Event.create!(title: 'Korean Cooking Class', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
 e17 = Event.create!(title: 'Korean Kpop Dance Practice', location: 'Korean Consulate', type: "offline" , start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come and learn about South Korea's version of Thanksgiving.", community: community1, user: user1)
 
+
+users.each do |user|
+    EventMember.create!(
+      user: user,
+      event: e11
+    )
+  end
 #Rugby Community
 e21 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To Suzhou River", type: "offline", start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Come join a less formal pickup game of rugby. You are welcome to bring friends and family, but please give the event leader a heads up.", community: community2, user: user2)
 
@@ -115,6 +127,9 @@ e21 = Event.create!(title: 'Saturday Pick-Up', location: "Baker's Field Next To 
 #Knitting Community
 e31 = Event.create!(title: 'Nonviolent Knitting', location: "Weeping Pillows Cafe",  type: "offline",start_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200), end_at: Faker::Time.between(from: DateTime.now - 90, to: DateTime.now + 200,), introduction: "Join us to knit goods to raise money for domestic violence escapees.", community: community3,
 user: user3)
+
+
+
 
 
 
@@ -136,7 +151,7 @@ community1.save
 file1 = URI.open("https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a29yZWF8ZW58MHx8MHx8fDA%3D")
 file2 = URI.open("https://images.unsplash.com/photo-1531931477284-7e16215c9540?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDB8fGtvcmVhfGVufDB8fDB8fHww")
 file3 = URI.open("https://images.unsplash.com/photo-1485186337913-a42c84d7ffcc?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fGtvcmVhfGVufDB8fDB8fHww")
-file4 = URI.open("https://resources.world.rugby/worldrugby/photo/2021/05/27/ebd0ace7-f5c1-46e4-861b-f96130f137cd/Yara1.jpeg")
+file4 = URI.open("https://images.unsplash.com/photo-1603389658124-0288af3e66d7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 e12.images.attach(io: file1, filename: "c1e2i1.png", content_type: "image/png")
 e12.images.attach(io: file2, filename: "c1e2i2.png", content_type: "image/png")
 e12.images.attach(io: file3, filename: "c1e2i3.png", content_type: "image/png")
@@ -228,3 +243,87 @@ user2.save
 file1 = URI.open("https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
 user3.photo.attach(io: file1, filename: "user3.png", content_type: "image/png")
 user3.save
+
+file1 = URI.open("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cG9ydHJhaXR8ZW58MHx8MHx8fDA%3D")
+users[0].photo.attach(io: file1, filename: "users0.png", content_type: "image/png")
+users[0].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[1].photo.attach(io: file1, filename: "users1.png", content_type: "image/png")
+users[1].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[2].photo.attach(io: file1, filename: "users2.png", content_type: "image/png")
+users[2].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[3].photo.attach(io: file1, filename: "users3.png", content_type: "image/png")
+users[3].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[4].photo.attach(io: file1, filename: "users4.png", content_type: "image/png")
+users[4].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1523824921871-d6f1a15151f1?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTl8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[5].photo.attach(io: file1, filename: "users5.png", content_type: "image/png")
+users[5].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1590086782792-42dd2350140d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjN8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[6].photo.attach(io: file1, filename: "users6.png", content_type: "image/png")
+users[6].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1557053910-d9eadeed1c58?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjJ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[7].photo.attach(io: file1, filename: "users7.png", content_type: "image/png")
+users[7].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[8].photo.attach(io: file1, filename: "users8.png", content_type: "image/png")
+users[8].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1522556189639-b150ed9c4330?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjZ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[9].photo.attach(io: file1, filename: "users9.png", content_type: "image/png")
+users[9].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1557862921-37829c790f19?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njd8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[10].photo.attach(io: file1, filename: "users10.png", content_type: "image/png")
+users[10].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1450297350677-623de575f31c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[11].photo.attach(io: file1, filename: "users11.png", content_type: "image/png")
+users[11].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1539614474468-f423a2d2270c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzB8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[12].photo.attach(io: file1, filename: "users12.png", content_type: "image/png")
+users[12].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1542327897-d73f4005b533?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzF8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[13].photo.attach(io: file1, filename: "users13.png", content_type: "image/png")
+users[13].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1609505848912-b7c3b8b4beda?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzJ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[14].photo.attach(io: file1, filename: "users14.png", content_type: "image/png")
+users[14].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1587397845856-e6cf49176c70?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzR8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[15].photo.attach(io: file1, filename: "users15.png", content_type: "image/png")
+users[15].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzV8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[16].photo.attach(io: file1, filename: "users16.png", content_type: "image/png")
+users[16].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1553514029-1318c9127859?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NzZ8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[17].photo.attach(io: file1, filename: "users17.png", content_type: "image/png")
+users[17].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1525134479668-1bee5c7c6845?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzl8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[18].photo.attach(io: file1, filename: "users18.png", content_type: "image/png")
+users[18].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nzh8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[19].photo.attach(io: file1, filename: "users19.png", content_type: "image/png")
+users[19].save
+
+file1 = URI.open("https://images.unsplash.com/photo-1535643302794-19c3804b874b?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fHBvcnRyYWl0fGVufDB8fDB8fHww")
+users[20].photo.attach(io: file1, filename: "users20.png", content_type: "image/png")
+users[20].save

@@ -1,9 +1,9 @@
   <img src="https://images.unsplash.com/photo-1543589077-47d81606c1bf?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"style=" height: 200px;
   width: 100%;object-fit: cover;"/>
   <div class="card-trip-infos"style="padding: 16px;display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
-    <div style="position: absolute;left:30px;top: -140px;">
+    <div style="position: absolute;left:30px;top: -150px;">
       <% if current_user.photo.attached? %>
-                      <%= cl_image_tag(current_user.photo.key, class:"w-24 h-24 rounded-full shadow-lg mx-auto") %>
+                      <%= cl_image_tag(current_user.photo.key, crop: :thumb, gravity: :face, width: 110, height: 110,class:"rounded-full shadow-lg mx-auto") %>
       <% else %>
                       <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="card-trip-user avatar-bordered" style="position: absolute;top: -150px; width: 100px;" />
       <% end %>

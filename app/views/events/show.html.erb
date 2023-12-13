@@ -47,7 +47,7 @@
                     <h3><i class="fa-solid fa-hourglass-end"> </i>      <%= @event.end_at %></h3>
                 </li>
             </ul>
-           
+
     </div>
     <div class="cols-span-2 grid-rows-2">
         <div class="rows-span-1">
@@ -61,17 +61,17 @@
         </div>
     </div>
     </div>
-</div> 
-
-    
+</div>
 
 
-    <% if current_user.present? &&  @event.community.joined_users.to_a.include?(current_user) && @event.user != current_user && @event.joined_users.to_a.exclude?(current_user)%>
+
+
+    <% if @event.community.joined_users.to_a.include?(current_user) && @event.user != current_user && @event.joined_users.to_a.exclude?(current_user)%>
       <%= button_to "Join Now!", community_event_event_members_path(@event.community,@event), method: :post, class: "text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" %>
-    <% elsif current_user.present? &&  @event.community.joined_users.to_a.include?(current_user) && current_user == @event.user %>
-      <div class="buttons-controller">
+    <% elsif current_user == @event.user %>
+      <div class="buttons-controller flex">
           <!-- Edit Event -->
-           <i data-modal-target="crud-modal" data-popover-target="edit-hover" data-popover-trigger="hover" data-modal-toggle="crud-modal" class="fa-regular fa-pen-to-square fa-2xl hover:text-blue-500"></i>
+           <i data-modal-target="crud-modal" data-popover-target="edit-hover" data-popover-trigger="hover" data-modal-toggle="crud-modal" class="fa-regular fa-pen-to-square fa-2xl hover:text-blue-500 mx-5 mt-3"></i>
           <!-- popover -->
             <div data-popover id="edit-hover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                 <div class="px-3 py-2 text-center">
@@ -132,9 +132,9 @@
                 </div>
             </div>
           <!--Delete Event -->
-            <%= button_to @event, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete '#{@event.title}'?"} do%>
-            <i class="fa-regular fa-trash-can fa-2xl hover:text-blue-500 mb-10" data-popover-target="delete-hover" data-popover-trigger="hover"></i>
-             <!-- popover -->
+            <%= button_to @event, method: :delete,data: {turbo_confirm: "Are you sure you want to delete '#{@event.title}'?"} do%>
+            <i class="fa-regular fa-trash-can fa-2xl hover:text-blue-500" data-popover-target="delete-hover" data-popover-trigger="hover"></i>
+          <!-- popover -->
             <div data-popover id="delete-hover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                 <div class="px-3 py-2">
                     <p>Destroy this event</p>
@@ -154,8 +154,8 @@
 
   </div>
   <div class="cols-span">
-   
-         <div class="items-center justify-center"> 
+
+         <div class="items-center justify-center">
             <h2 class="mb-2 items-center text-2xl font-semibold text-gray-900 dark:text-white">Attendees:</h2>
           </div>
           <% @event.joined_users.each do |user| %>

@@ -32,6 +32,7 @@ user3 = User.create!(email: 'michelle@whitehouse.gov', password: '12345678', fir
 user4 = User.create!(email: 'atate@hotmail.com', password: '12345678', first_name: 'Andrew', last_name: 'Tate', location: 'China', nationality: 'British', preferred_name: 'Tater' , gender: 'male');
 
 users = []
+
 26.times do |i|
   p "generating user number #{i}"
   user= User.create!(email: "#{Faker::Movies::HarryPotter.character.gsub(' ', '_')}#{Faker::Number.decimal_part}#{i}@gmail.com", password: '12345678', first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, location: Faker::Address.country, nationality: 'Faker::Address.country', preferred_name: 'Faker::HarryPotter.character' , gender: Faker::Gender.binary_type);

@@ -9,39 +9,17 @@
       <% end %>
     </div>
     <div style="position: absolute;right: 16px;top: -100px;color:white">
-      <h2>🎄 Welcome! <%= current_user.preferred_name%> 😊</h2>
-    </div>
-  </div>
-
-
-
-
-
-<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-        <li class="me-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-        </li>
-        <li class="me-2" role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Joined</button>
-        </li>
-        <li role="presentation">
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">Created</button>
-        </li>
-    </ul>
-</div>
-<div id="default-tab-content">
-    <div id="profile" role="tabpanel" aria-labelledby="profile-tab">
-      <p class="mb-2 text-2xl  tracking-tight text-gray-900 dark:text-white">Name:<%= current_user.first_name %>·<%= current_user.last_name %></p>
-      <p class="mb-2 text-2xl  tracking-tight text-gray-900 dark:text-white">Preferred name:<%= current_user.preferred_name%></p>
-      <p class="mb-2 text-2xl  tracking-tight text-gray-900 dark:text-white">Nationality:<%= current_user.nationality %></p>
-      <p class="mb-2 text-2xl  tracking-tight text-gray-900 dark:text-white">Location:<%= current_user.location %></p>
-      <p class="mb-2 text-2xl  tracking-tight text-gray-900 dark:text-white">Gender:<%= current_user.gender %></p>
+      <h2 class="font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white"  style="color:white">🎄 Welcome! <%= current_user.preferred_name%> 😊</h2>
       <!-- Edit Button -->
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-        Edit profile
-        </button>
-      <!-- Main modal -->
+         <i data-modal-target="crud-modal" data-popover-target="edit-hover" data-popover-trigger="hover" data-modal-toggle="crud-modal" class="fa-regular ml-44 mt-10 fa-pen-to-square fa-xl hover:text-blue-500"></i>
+          <!-- popover -->
+              <div data-popover id="edit-hover" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="px-3 py-2 text-center">
+                      <p>Edit profile</p>
+                  </div>
+                  <div data-popper-arrow></div>
+              </div>
+          <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
                 <!-- Modal content -->
@@ -65,11 +43,11 @@
                                 <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Firs name</label>
                                 <input type="text" name="user[first_name]" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<%= current_user.first_name%>" required="">
                             </div>
-                             <div class="col-span-2">
+                            <div class="col-span-2">
                                 <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
                                 <input type="text" name="user[last_name]" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  value="<%= current_user.last_name%>"required="">
                             </div>
-                             <div class="col-span-2">
+                            <div class="col-span-2">
                                 <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
                                 <input type="text" name="user[location]" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="<%= current_user.location%>" required="">
                             </div>
@@ -88,7 +66,7 @@
                                   <option value="France🇫🇷" <%= 'selected' if current_user.nationality == 'France🇫🇷' %>>France🇫🇷</option>
                                 </select>
                             </div>
-                             <div class="col-span-2 sm:col-span-1">
+                            <div class="col-span-2 sm:col-span-1">
                                 <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                                 <select id="gender" name="user[gender]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     <option selected="">Select category</option>
@@ -107,31 +85,97 @@
             </div>
         </div>
     </div>
+  </div>
+
+
+
+
+
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+        <li class="me-2" data-popover-target="Community joined" data-popover-trigger="hover" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fa-solid fa-users fa-xl"></i></button>
+        </li>
+         <!-- popover -->
+              <div data-popover id="Community joined" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="px-3 py-2 text-center">
+                      <p>Communities joined</p>
+                  </div>
+                  <div data-popper-arrow></div>
+              </div>
+        <li role="presentation" data-popover-target="Community created" data-popover-trigger="hover" >
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false"><i class="fa-solid fa-hand fa-xl"></i></button>
+        </li>
+         <!-- popover -->
+              <div data-popover id="Community created" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="px-3 py-2 text-center">
+                      <p>Communities created</p>
+                  </div>
+                  <div data-popper-arrow></div>
+              </div>
+         <li role="presentation" data-popover-target="Events joined" data-popover-trigger="hover">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contact-tab" data-tabs-target="#contact" type="button" role="tab" aria-controls="contacts" aria-selected="false"><i class="fa-solid fa-list fa-xl"></i></button>
+        </li>
+         <!-- popover -->
+              <div data-popover id="Events joined" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="px-3 py-2 text-center">
+                      <p>Events joined</p>
+                  </div>
+                  <div data-popper-arrow></div>
+              </div>
+         <li role="presentation" data-popover-target="Events created" data-popover-trigger="hover">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="con-tab" data-tabs-target="#con" type="button" role="tab" aria-controls="contacts" aria-selected="false"><i class="fa-solid fa-flag fa-xl"></i></button>
+        </li>
+         <!-- popover -->
+              <div data-popover id="Events created" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
+                  <div class="px-3 py-2 text-center">
+                      <p>Events created</p>
+                  </div>
+                  <div data-popper-arrow></div>
+              </div>
+    </ul>
+</div>
+<div id="default-tab-content">
     <div  id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-        <div class="md:container md:mx-auto flex justify-center space-x-4">
-          <div class="mb-3 mt-3 text-2xl"><%= @joined_communities.count %> communities joined:</div>
-              <%# below is the card %>
-              <% @joined_communities.each do |community| %>
-                <div>
-                  <%= link_to community_path(community) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
-                    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
-                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
-                    <figcaption class="flex items-center justify-center mt-3">
-                      <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
-                      <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
-                      </div>
-                    </figcaption>
-                  <% end %>
+      <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Joined Communities :</div>
+      <div class="grid grid-cols-3 gap-12">
+          <%# below is the card %>
+          <% @joined_communities.each do |community| %>
+            <div>
+              <%= link_to community_path(community) ,class: "relative block max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
+                <p class="mb-3 mt-5 mx-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+                <p class="font-normal text-gray-700 dark:text-gray-400 mx-4"><%= truncate(community.description, length: 100)%></p>
+                <div class="absolute bottom-0 right-0 pr-5 pb-5">
+                  <i class="fa-solid fa-circle-right fa-2xs text-end">read more</i>
                 </div>
               <% end %>
-              <%# above is the card %>
-        </div>
-
-
-        <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-          <div class="mb-3 mt-3 text-2xl"><%= @joined_events.count %> events joined:</div>
+            </div>
+          <% end %>
+          <%# above is the card %>
+      </div>
+    </div>
+    <div id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+          <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Created Communities :</div>
+              <div class="grid grid-cols-3 gap-12">
+                <%# below is the card %>
+                <% current_user.communities.each do |community| %>
+                  <div>
+                    <%= link_to community_path(community) ,class: "relative block max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                      <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
+                      <p class="mb-3 mt-5 mx-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+                      <p class="font-normal text-gray-700 dark:text-gray-400 mx-4"><%= truncate(community.description, length: 100)%></p>
+                      <div class="absolute bottom-0 right-0 pr-5 pb-5">
+                        <i class="fa-solid fa-circle-right fa-2xs text-end">read more</i>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+                <%# above is the card %>
+               </div>
+    </div>
+    <div id="contact" role="tabpanel" aria-labelledby="contact-tab">
+       <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Joined Events :</div>
           <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
             <%@joined_events.order(start_at: :desc).each do |event|%>
               <time class="text-lg font-semibold text-gray-900 dark:text-white"><%= event.start_at %></time>
@@ -154,33 +198,9 @@
                     </li>
             <% end %>
           </ol>
-        </div>
     </div>
-    <div id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-      <div class="md:container md:mx-auto flex justify-center space-x-4">
-          <div class="mb-3 mt-3 text-2xl"><%= current_user.communities.count %> communities created by you :</div>
-              <%# below is the card %>
-              <%current_user.communities.each do |community| %>
-                <div>
-                  <%= link_to community_path(community) ,class: "block max-w-sm h-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
-                    <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
-                    <p class="font-normal text-gray-700 dark:text-gray-400"><%= community.description %></p>
-                    <figcaption class="flex items-center justify-center mt-3">
-                      <img class="rounded-full w-12 h-12" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="example profile picture">
-                      <div class="space-y-0.5 text-base dark:text-white text-left rtl:text-right ms-3">
-                        <div>Bonnie Green</div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400 ">Developer at Open AI</div>
-                      </div>
-                    </figcaption>
-                  <% end %>
-                </div>
-              <% end %>
-              <%# above is the card %>
-        </div>
-
-
-        <div class="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
-          <div class="mb-3 mt-3 text-2xl"><%= current_user.events.count %> events created by you :</div>
+     <div id="con" role="tabpanel" aria-labelledby="con-tab">
+          <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Created Events :</div>
           <ol class="mt-3 divide-y divider-gray-200 dark:divide-gray-700">
             <% current_user.events.order(start_at: :desc).each do |event|%>
               <time class="text-lg font-semibold text-gray-900 dark:text-white"><%= event.start_at %></time>
@@ -203,6 +223,5 @@
                     </li>
             <% end %>
           </ol>
-        </div>
     </div>
 </div>

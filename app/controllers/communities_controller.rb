@@ -47,9 +47,10 @@ class CommunitiesController < ApplicationController
   end
 
   def destroy
+    # raise
     @community=Community.find(params[:id])
-    authorize @community
     @community.destroy
+    authorize @community
     redirect_to communities_path, status: :see_other
   end
 

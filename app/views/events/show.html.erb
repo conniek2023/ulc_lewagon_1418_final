@@ -34,10 +34,10 @@
         <h2 class="mb-2 mt-5 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-3xl lg:text-3xl dark:text-white"><%= @event.title %></h2>
             <ul class="max-w-md space-y-1 text-black-500 list-inside dark:text-black-400">
                 <li>
-                  <h3><i class="fa-solid fa-laptop mt-3 mr-5"></i>                                                                                                  <%= @event.type%></h3>
+                  <h3><i class="fa-solid fa-laptop mt-3 mr-5"></i><%= @event.type%></h3>
                 </li>
                 <li>
-                <h3><i class="fa-solid fa-location-dot mt-3 mr-5"></i>                                                                                               <%= @event.location %></h3>
+                <h3><i class="fa-solid fa-location-dot mt-3 mr-5"></i><%= @event.location %></h3>
                 </li>
                 <li>
                     <h3><i class="fa-solid fa-hourglass-start mt-3 mr-5"></i>-------<%= @event.start_at.strftime('%m/%d/%Y') %>-------</h3>

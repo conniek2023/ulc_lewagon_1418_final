@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-
+ 
   resources :communities do #community manager
     resources :community_members, only: [:create] #community_member
     resources :events, only: [:new, :create] do#event_manager

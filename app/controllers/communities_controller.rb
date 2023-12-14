@@ -16,12 +16,13 @@ class CommunitiesController < ApplicationController
     # @current_user = current_user
   end
 
-  # def new
-  #   @community = Community.new
-  #   authorize @community
-  # end
+  def new
+    @community = Community.new
+    authorize @community
+  end
 
   def create
+    raise
     @community = current_user.communities.build(community_params)
     authorize @community
     if @community.save
@@ -40,6 +41,7 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     authorize @community
     if @community.update(community_params)
+      @community.photo=params[:photo]
       redirect_to @community
     else
       render :update
@@ -56,7 +58,7 @@ class CommunitiesController < ApplicationController
   private
 
   def community_params
-    params.require(:community).permit(:name, :description, :topic)
+    params.require(:community).permit(:name, :description, :topic, :photo)
   end
 
 

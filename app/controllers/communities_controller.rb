@@ -40,7 +40,7 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     authorize @community
     if @community.update(community_params)
-      redirect_to @community
+      redirect_to community_path(@community), status: :see_other
     else
       render :update
     end

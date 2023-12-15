@@ -6,7 +6,7 @@ class CommunityMembersController < ApplicationController
     authorize @community_member
     if @community_member.save
       flash[:alert] = "You have joined a community successfully."
-      redirect_to @community_member.community
+      redirect_to community_path(@community_member.community)
     else
       flash[:alert] = "Failed"
       redirect_to community_path(@community_member.community)

@@ -13,7 +13,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Type</label>
                                 <!--select id="type" name="event[type]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"-->
-                                <%= f.select :type, ['Offline', 'Online','Blended'], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"%>  
+                                <%= f.select :type, ['Offline', 'Online','Blended'], class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"%>
                                    <%# <option selected="">Select category</option>
                                     <option value="TV">Offline</option>
                                     <option value="PC">Online</option>
@@ -33,7 +33,7 @@
                                 <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="images" name="event[images]" type="file" multiple>
                             </div> %>
                             <div class="col-span-2">
-                            <%= f.file_field :images, multiple: true %>
+                            <%= f.file_field :images, multiple: true,class:"block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
                             </div>
 
                             <div class="col-span-2">

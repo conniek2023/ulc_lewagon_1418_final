@@ -6,11 +6,11 @@
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Hey! <%= current_user.preferred_name %></h1>
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Welcome back to</h1>
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white"><%= @community.name %>!</h1>
-        <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Come on!<%= @community.description %></p>
+        <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><%= @community.description %></p>
       <% else %>
       <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Hi! <%= current_user.preferred_name %></h1>
       <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Why not join us?</h1>
-      <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Come on!<%= truncate(@community.description, length: 100) %></p>
+      <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400"><%= truncate(@community.description, length: 100) %></p>
       <% end %>
     </div>
 

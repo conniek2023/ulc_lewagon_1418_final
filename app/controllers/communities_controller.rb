@@ -47,7 +47,7 @@ class CommunitiesController < ApplicationController
     authorize @community
     if @community.update(community_params)
       # @community.photo=params[:photo]
-      redirect_to @community, status: 303
+      redirect_to community_path(@community), status: :see_other
     else
       # render :update
       render 'communities/show', status: 422

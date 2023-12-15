@@ -1,5 +1,5 @@
   <img src="https://images.unsplash.com/photo-1507608869274-d3177c8bb4c7?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"style=" height: 200px;
-  width: 100%;object-fit: cover;" class="rounded filter "/>
+  width: 100%;object-fit: cover;" class="rounded"/>
   <div class="card-trip-infos"style="padding: 16px;display: flex;justify-content: space-between;align-items: flex-end;position: relative;">
     <div style="position: absolute;left:60px;top: -160px;">
       <% if current_user.photo.attached? %>
@@ -99,17 +99,7 @@
          <!-- popover -->
               <div data-popover id="Community joined" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                   <div class="px-3 py-2 text-center">
-                      <p>Communities joined</p>
-                  </div>
-                  <div data-popper-arrow></div>
-              </div>
-        <li role="presentation" data-popover-target="Community created" data-popover-trigger="hover" >
-            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false"><i class="fa-solid fa-hand fa-xl"></i></button>
-        </li>
-         <!-- popover -->
-              <div data-popover id="Community created" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                  <div class="px-3 py-2 text-center">
-                      <p>Communities created</p>
+                      <p>Communities</p>
                   </div>
                   <div data-popper-arrow></div>
               </div>
@@ -119,7 +109,7 @@
          <!-- popover -->
               <div data-popover id="Events created" role="tooltip" class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                   <div class="px-3 py-2 text-center">
-                      <p>Events created</p>
+                      <p>Events</p>
                   </div>
                   <div data-popper-arrow></div>
               </div>
@@ -127,31 +117,33 @@
 </div>
 <div id="default-tab-content">
     <div  id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-      <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Joined Communities :</div>
-      <div class="grid grid-cols-3 gap-12">
-          <%# below is the card %>
-          <% @joined_communities.each do |community| %>
-            <div>
-              <%= link_to community_path(community) ,class: "relative block max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
-                <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
-                <p class="mb-3 mt-5 mx-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
-                <p class="font-normal text-gray-700 dark:text-gray-400 mx-4"><%= truncate(community.description, length: 100)%></p>
-                <div class="absolute bottom-0 right-0 pr-5 pb-5">
-                  <i class="fa-solid fa-circle-right fa-2xs text-end">read more</i>
+      <div  class="grid grid-cols-2">
+        <div>
+          <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Joined Communities :</div>
+                <div class="grid grid-cols-1 gap-12">
+                    <%# below is the card %>
+                    <% @joined_communities.each do |community| %>
+                      <div>
+                        <%= link_to community_path(community) ,class: "relative mx-auto block max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                          <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
+                          <p class="mb-3 mt-5 mx-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
+                          <p class="font-normal text-gray-700 dark:text-gray-400 mx-4"><%= truncate(community.description, length: 100)%></p>
+                          <div class="absolute bottom-0 right-0 pr-5 pb-5">
+                            <i class="fa-solid fa-circle-right fa-2xs text-end">read more</i>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                    <%# above is the card %>
                 </div>
-              <% end %>
-            </div>
-          <% end %>
-          <%# above is the card %>
-      </div>
-    </div>
-    <div id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+        </div>
+        <div>
           <div class="mb-10 mt-10 text-2xl font-extrabold tracking-tight leading-none text-gray-900 md:text-2xl lg:text-2xl dark:text-white text-center">Created Communities :</div>
-              <div class="grid grid-cols-3 gap-12">
+              <div class="grid grid-cols-1 gap-12">
                 <%# below is the card %>
                 <% current_user.communities.each do |community| %>
                   <div>
-                    <%= link_to community_path(community) ,class: "relative block max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
+                    <%= link_to community_path(community) ,class: "relative block mx-auto max-w-sm h-[500px] bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700" do%>
                       <%= cl_image_tag community.photo.key, height: 300, width: 400, crop: :fill, class: "rounded-t-lg" if community.photo.attached? %>
                       <p class="mb-3 mt-5 mx-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= community.name %></p>
                       <p class="font-normal text-gray-700 dark:text-gray-400 mx-4"><%= truncate(community.description, length: 100)%></p>
@@ -162,7 +154,9 @@
                   </div>
                 <% end %>
                 <%# above is the card %>
-               </div>
+            </div>
+        </div>
+      </div>
     </div>
     <div id="con" role="tabpanel" aria-labelledby="con-tab">
         <div  class="grid grid-cols-2">
@@ -213,5 +207,5 @@
               </ol>
           </div>
         </div>
-      </div>
+    </div>
 </div>

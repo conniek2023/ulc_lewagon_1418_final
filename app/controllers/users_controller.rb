@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(params.require(:user).permit(:first_name, :last_name, :location, :preferred_name, :nationality, :gender))
+    if current_user.update(params.require(:user).permit(:first_name, :last_name, :location, :preferred_name, :nationality, :gender, :photo))
       redirect_to me_path
     else
       render :update

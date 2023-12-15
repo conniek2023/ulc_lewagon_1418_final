@@ -85,7 +85,8 @@
                       </button>
                   </div>
                   <!-- Modal body -->
-                  <form class="p-4 md:p-5" action="<%= communities_path %>" method="POST">
+                  <%#= form_with(model: @community, class: "p-4 md:p-5") do |f| %>
+                  <form class="p-4 md:p-5" enctype="multipart/form-data" accept-charset="UTF-8" action="<%= communities_path %>" method="POST">
                       <div class="grid gap-4 mb-4 grid-cols-2">
                           <div class="col-span-2">
                               <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -112,6 +113,7 @@
                           <div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="photo">Upload Photo</label>
                            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="photo"  name="community[photo]" type="file">
+                           <%#= f.file_field :photo, class: "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" %>
                           </div>
 
                       </div>
@@ -120,6 +122,7 @@
                           Add new community
                       </button>
                   </form>
+                  <%# end %>
                   
               </div>
           </div>

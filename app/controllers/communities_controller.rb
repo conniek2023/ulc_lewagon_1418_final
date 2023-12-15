@@ -7,12 +7,15 @@ class CommunitiesController < ApplicationController
     else
       @communities = policy_scope(Community).where(topic: params[:filter])
     end
+    @community = Community.new
   end
 
   def show
     @community = Community.find(params[:id])
     @events = @community.events # => [event1 , ...]
     authorize @community
+    @event = Event.new
+    @event.community = @community
     # @current_user = current_user
   end
 
@@ -22,13 +25,15 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    raise
-    @community = current_user.communities.build(community_params)
+    # raise
+    # @community = current_user.communities.build(community_params)
+    @community = Community.new(community_params)
+    @community.user = current_user
     authorize @community
     if @community.save
-      redirect_to @community
+      redirect_to @community, status: 303
     else
-      render :new
+      render 'communities/index', status: 422
     end
   end
 
@@ -41,10 +46,11 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     authorize @community
     if @community.update(community_params)
-      @community.photo=params[:photo]
-      redirect_to @community
+      # @community.photo=params[:photo]
+      redirect_to @community, status: 303
     else
-      render :update
+      # render :update
+      render 'communities/show', status: 422
     end
   end
 

@@ -40,10 +40,18 @@
                 <h3><i class="fa-solid fa-location-dot mt-3 mr-5"></i>                                                                                               <%= @event.location %></h3>
                 </li>
                 <li>
-                    <h3><i class="fa-solid fa-hourglass-start mt-3 mr-5"></i>-------<%= @event.start_at.strftime('%m/%d/%Y') %>-------</h3>
+                    <% if @event.start_at.present? %>
+                        <h3><i class="fa-solid fa-hourglass-start mt-3 mr-5"></i>-------<%= @event.start_at.strftime('%m/%d/%Y') %>-------</h3>
+                     <% else %>
+                        <h3>No start time</h3>
+                     <% end %>
                 </li>
                 <li>
-                    <h3><i class="fa-solid fa-hourglass-end mt-3 mr-5"> </i>-------<%= @event.end_at.strftime('%m/%d/%Y') %>-------</h3>
+                    <% if @event.end_at.present? %>
+                        <h3><i class="fa-solid fa-hourglass-end mt-3 mr-5"> </i>-------<%= @event.end_at.strftime('%m/%d/%Y') %>-------</h3>
+                    <% else %>
+                        <h3>No end time</h3>
+                    <% end %>
                 </li>
             </ul>
       </div>

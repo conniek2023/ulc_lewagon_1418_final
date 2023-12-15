@@ -8,7 +8,7 @@ class EventMembersController < ApplicationController
     p @event_member
     if @event_member.save
       flash[:notice] = "You have joined an event successfully."
-      redirect_to @event_member.event
+      redirect_to event_path(@event_member.event)
     else
       flash[:notice] = "Failed"
       redirect_to event_path(@event_member.event)

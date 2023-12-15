@@ -31,7 +31,7 @@ class CommunitiesController < ApplicationController
     @community.user = current_user
     authorize @community
     if @community.save
-      redirect_to @community, status: 303
+      redirect_to community_path(@community), status: 303
     else
       render 'communities/index', status: 422
     end

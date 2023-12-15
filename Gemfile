@@ -4,6 +4,8 @@ ruby "3.1.2"
 
 gem "pundit"
 
+#gem 'simple_form_tailwind_css'
+
 gem 'simple_form-tailwind'
 
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'

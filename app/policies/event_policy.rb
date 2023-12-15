@@ -6,7 +6,8 @@ class EventPolicy < ApplicationPolicy
     end
   end
   def create?
-    user.joined_communities.include?(record.community)||record.community.user==user
+
+    user.joined_communities.include?(record.community)|| user == record.community.user
 
   end
 

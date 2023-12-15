@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    # raise
     # @event = current_user.events.build(community_id:params[:community_id])
     @community = Community.find(params[:community_id])
     @event = Event.new(event_params)
@@ -62,7 +63,7 @@ class EventsController < ApplicationController
 
   def event_params
     # params.require(:event).permit(:title, :location, :description, :type,:start_at, :end_at, { :images => []})
-    params.require(:event).permit(:title, :location, :type, :introduction)
+    params.require(:event).permit(:title, :location, :type, :introduction, :start_at, :end_at,  { :images => []})
   end
 
 end
